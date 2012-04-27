@@ -3,3 +3,4 @@ description = Module that integrates Maestro with Toolbar for easy access to not
 core = 7.x
 dependencies[] = maestro
 dependencies[] = toolbar
+scripts[] = maestro_toolbar_notifications.js
