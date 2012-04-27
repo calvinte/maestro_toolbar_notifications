@@ -1,0 +1,45 @@
+<?php
+
+/**
+ * @file
+ * Adds a Maestro notification to the Druapl toolbar
+ */
+
+function maestro_toolbar_notifications_menu() {
+  $items['admin/notifications'] = array(
+    'title' => t('Notifications'),
+    'page callback' => 'maestro_toolbar_notifications_page',
+    'access arguments' => array('maestro taskconsole'),
+  );
+
+  return $items;
+}
+
+function maestro_toolbar_notifications_page() {
+  drupal_goto('maestro/myflows');
+}
+
+function maestro_toolbar_notifications_maestro_notification_observer() {
+  return array('MaestroTwitterNotification');
+}
+
+// Load maestro_notification.class.php from the maestro module.
+module_load_include('php', 'maestro', 'maestro_notification.class');
+
+class MaestrotoolbarNotification extends MaestroNotificationObserver {
+
+  public function __construct() {
+    $this->displayName = "toolbar Notifier";
+  }
+
+  public function notify(MaestroNotification &$obj) {
+    if(is_array($obj->getUserIDs())) {
+      foreach($obj->getUserIDs() as $userID) {
+        //send a twitter update however that is done :-)
+        //echo "twitter update to userID:" . $userID;
+      }
+    }
+  }
+}
+
+?>
