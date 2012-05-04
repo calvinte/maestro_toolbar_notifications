@@ -38,24 +38,26 @@ function maestro_toolbar_notifications_access() {
  * sends them to the Drupal.settings js object.
  */
 function maestro_toolbar_notifications_preprocess(&$variables, $hook) {
-  // Load maestro.moderator.inc from the maestro module.
-  module_load_include('inc', 'maestro', 'maestro.moderator');
+  if (maestro_toolbar_notifications_access()) {
+    // Load maestro.moderator.inc from the maestro module.
+    module_load_include('inc', 'maestro', 'maestro.moderator');
 
-  $result = db_query(maestro_get_all_flows_data(array('myflows' => TRUE)));
+    $result = db_query(maestro_get_all_flows_data(array('myflows' => TRUE)));
 
-  $notification_count = $result->rowCount();
+    $notification_count = $result->rowCount();
 
-  if ($notification_count == 1) {
-    $notification_term = t('Notification');
+    if ($notification_count == 1) {
+      $notification_term = t('Notification');
+    }
+    else {
+      $notification_term = t('Notifications');
+    }
+    drupal_add_js(array(
+      'maestro_toolbar_notifications' => array(
+        'notification' => $notification_count . ' ' . $notification_term,
+      ),
+    ), 'setting');
   }
-  else {
-    $notification_term = t('Notifications');
-  }
-  drupal_add_js(array(
-    'maestro_toolbar_notifications' => array(
-      'notification' => $notification_count . ' ' . $notification_term,
-    ),
-  ), 'setting');
 }
 
 function maestro_toolbar_notifications_page() {
