@@ -1,6 +1,0 @@
-name = Maestro Toolbar Notifications
-description = Module that integrates Maestro with Toolbar for easy access to notifications
-core = 7.x
-dependencies[] = maestro
-dependencies[] = toolbar
-scripts[] = maestro_toolbar_notifications.js
