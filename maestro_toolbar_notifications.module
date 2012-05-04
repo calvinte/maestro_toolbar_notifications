@@ -9,15 +9,27 @@
  * Implements hook_menu().
  */
 function maestro_toolbar_notifications_menu() {
-  module_load_include('inc', 'maestro', 'maestro.moderator');
   $items['admin/notifications'] = array(
     'title' => 'Notifications',
-    'page callback' => 'maestro_my_flows',
-    'access arguments' => array('maestro taskconsole'),
+    'page callback' => 'maestro_toolbar_notifications_page',
+    'access callback' => 'maestro_toolbar_notifications_access',
     'weight' => -16,
   );
 
   return $items;
+}
+
+/**
+ * Returns true when user has permissions to both
+ * 'maestro taskconsole' and 'access toolbar'.
+ */
+function maestro_toolbar_notifications_access() {
+  if (user_access('maestro taskconsole') && user_access('access toolbar')) {
+    return TRUE;
+  }
+  else {
+    return FALSE;
+  }
 }
 
 /**
@@ -48,4 +60,9 @@ function maestro_toolbar_notifications_preprocess(&$variables, $hook) {
       'notification' => $notification_count . ' ' . $notification_term,
     ),
   ), 'setting');
+}
+
+function maestro_toolbar_notifications_page() {
+  menu_set_active_item('maestro/myflows');
+  return menu_execute_active_handler(NULL, FALSE);
 }
