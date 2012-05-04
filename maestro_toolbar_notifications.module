@@ -34,9 +34,9 @@ function maestro_toolbar_notifications_help($path, $arg) {
             '!calvintennant' => l('Calvin Tennant', 'http://calvintennant.com'),
             '!myplanetdigital' => l('Myplanet Digital', 'http://myplanetdigital.com'),
           )) . '</p>';
-  }
 
-  return $helptext;
+      return $helptext;
+  }
 }
 
 /**
