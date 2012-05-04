@@ -6,6 +6,40 @@
  */
 
 /**
+ * Implements hook_help().
+ */
+function maestro_toolbar_notifications_help($path, $arg) {
+  switch ($path) {
+    case 'admin/help#maestro_toolbar_notifications':
+      $helptext  = '<h3>' . t('About') . '</h3>';
+      $helptext .= '<p>' . t('A simple module that when enabled in conjunction with Maestro
+        will add a menu item to the Toolbar that shows the number of Maestro notifications
+        that user has. This style of notification improves the content authoring experience
+        by giving the user a heads up on how many tasks they have in their queue.') . '</p>';
+      $helptext .= '<h3>' . t('Configuration') . '</h3>';
+      $helptext .= '<p>' .
+        t('This module does not register any configuration pages. To have
+            access to this module\'s functionality users must have both "Use the administration
+            toolbar" and "Access Maestro Task Console" permissions. By default the notifications
+            menu item will show up on the far left of the toolbar, this positioning can be
+            changed with the from the !managmentpagelink.',
+          array(
+            '!managmentpagelink' => l('managment menu configuration page',
+            'admin/structure/menu/manage/management')
+          )) . '</p>';
+      $helptext .= '<h3>' . t('Contributors') . '</h3>';
+      $helptext .= '<p>' .
+        t('This module was written by !calvintennant at !myplanetdigital',
+          array(
+            '!calvintennant' => l('Calvin Tennant', 'http://calvintennant.com'),
+            '!myplanetdigital' => l('Myplanet Digital', 'http://myplanetdigital.com'),
+          )) . '</p>';
+  }
+
+  return $helptext;
+}
+
+/**
  * Implements hook_menu().
  */
 function maestro_toolbar_notifications_menu() {
