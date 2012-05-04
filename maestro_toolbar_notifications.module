@@ -24,15 +24,15 @@ function maestro_toolbar_notifications_help($path, $arg) {
             menu item will show up on the far left of the toolbar, this positioning can be
             changed with the from the !managmentpagelink.',
           array(
-            '!managmentpagelink' => l('managment menu configuration page',
-            'admin/structure/menu/manage/management')
+            '!managmentpagelink' => l(t('managment menu configuration page'),
+            'admin/structure/menu/manage/management'),
           )) . '</p>';
       $helptext .= '<h3>' . t('Contributors') . '</h3>';
       $helptext .= '<p>' .
         t('This module was written by !calvintennant at !myplanetdigital',
           array(
-            '!calvintennant' => l('Calvin Tennant', 'http://calvintennant.com'),
-            '!myplanetdigital' => l('Myplanet Digital', 'http://myplanetdigital.com'),
+            '!calvintennant' => l(t('Calvin Tennant'), 'http://calvintennant.com'),
+            '!myplanetdigital' => l(t('Myplanet Digital'), 'http://myplanetdigital.com'),
           )) . '</p>';
 
       return $helptext;
@@ -94,6 +94,9 @@ function maestro_toolbar_notifications_preprocess(&$variables, $hook) {
   }
 }
 
+/**
+ * Menu callback for admin/maestro_toolbar_notifications
+ */
 function maestro_toolbar_notifications_page() {
   menu_set_active_item('maestro/myflows');
   return menu_execute_active_handler(NULL, FALSE);
