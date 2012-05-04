@@ -43,11 +43,7 @@ function maestro_toolbar_notifications_preprocess(&$variables, $hook) {
 
   $result = db_query(maestro_get_all_flows_data(array('myflows' => TRUE)));
 
-  $notification_count = 0;
-
-  foreach ($result as $record) {
-    $notification_count++;
-  }
+  $notification_count = $result->rowCount();
 
   if ($notification_count == 1) {
     $notification_term = t('Notification');
