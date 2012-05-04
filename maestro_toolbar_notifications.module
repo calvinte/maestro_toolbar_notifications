@@ -6,7 +6,7 @@
  */
 
 /**
- * Implementation of hook_menu()
+ * Implements hook_menu().
  */
 function maestro_toolbar_notifications_menu() {
   module_load_include('inc', 'maestro', 'maestro.moderator');
@@ -20,12 +20,12 @@ function maestro_toolbar_notifications_menu() {
   return $items;
 }
 
-// Run the count function on every page load
+// Run the count function on every page load.
 maestro_toolbar_notifications_count();
 
 /**
- * Grabs the notifications for the current user and 
- * sends them to the Drupal.settings js object
+ * Grabs the notifications for the current user and
+ * sends them to the Drupal.settings js object.
  */
 function maestro_toolbar_notifications_count() {
   // Load maestro.moderator.inc from the maestro module.
@@ -48,6 +48,6 @@ function maestro_toolbar_notifications_count() {
   drupal_add_js(array(
     'maestro_toolbar_notifications' => array(
       'notification' => $notification_count . ' ' . $notification_term,
-    )
+    ),
   ), 'setting');
 }
