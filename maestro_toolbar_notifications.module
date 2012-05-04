@@ -20,14 +20,12 @@ function maestro_toolbar_notifications_menu() {
   return $items;
 }
 
-// Run the count function on every page load.
-maestro_toolbar_notifications_count();
-
 /**
+ * Implements hook_init().
  * Grabs the notifications for the current user and
  * sends them to the Drupal.settings js object.
  */
-function maestro_toolbar_notifications_count() {
+function maestro_toolbar_notifications_preprocess(&$variables, $hook) {
   // Load maestro.moderator.inc from the maestro module.
   module_load_include('inc', 'maestro', 'maestro.moderator');
 
